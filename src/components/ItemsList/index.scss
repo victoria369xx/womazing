@@ -1,0 +1,11 @@
+@import '../../css/variables';
+
+.itemsList-heading {
+    color: $primaryColor;
+} 
+
+.itemsList-container {
+    display: flex; 
+    justify-content: space-between;
+    flex-wrap: wrap;
+}

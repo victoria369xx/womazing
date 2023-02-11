@@ -1,0 +1,32 @@
+
+@import '../../css/_variables.scss';
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2%;
+    border-bottom: 1px solid $primaryColor;
+}
+
+.header-link__logo {
+    text-decoration: none;
+    color: $primaryColor;
+}
+
+.header-right-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 2%;
+}
+
+.header-link {
+    text-decoration: none;
+    color: $primaryColor;
+    margin-right: 6%;
+}
+
+
+.header-link:hover {
+    color:$hoverColor;
+}
