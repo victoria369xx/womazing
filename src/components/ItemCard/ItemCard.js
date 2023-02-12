@@ -1,7 +1,15 @@
 import {Card, CardMedia, Button, Typography} from '@mui/material'; 
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { useDispatch } from 'react-redux';
+import { addItem } from '../../store/cartItems/actions';
+
 export const ItemCard = (props) => {
+const dispatch = useDispatch();
+
+  const  addToCartHandler = (item) => {
+    dispatch(addItem(item))
+  }
     return (
         <Card sx={{width:'335px', height:'600px', marginBottom:'2rem'}}>
              <CardMedia
@@ -30,7 +38,7 @@ export const ItemCard = (props) => {
                 </div>
            </div> 
             <div className='cardActions' style={{display:'flex', justifyContent:'flex-end'}}>
-                <Button size="medium" variant='text' sx={{marginRight:'1rem', color:'#1C1C1C'}} endIcon={<ShoppingCartIcon/>} >В корзину</Button>
+                <Button size="medium" variant='text' sx={{marginRight:'1rem', color:'#1C1C1C'}} endIcon={<ShoppingCartIcon/>} onClick={()=>addToCartHandler(props.item)} >В корзину</Button>
             </div>
         </Card>
     )

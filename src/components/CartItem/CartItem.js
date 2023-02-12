@@ -1,7 +1,18 @@
 import { Paper, Grid, CardMedia, Button } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import './index.scss';
+import { useDispatch } from 'react-redux';
+import { deleteItem } from '../../store/cartItems/actions';
+
 export const CartItem = (props) => {
+
+    const dispatch = useDispatch();
+
+    const deleteFromCartHandler = (id) => {
+        console.log(id)
+        dispatch(deleteItem({id}))
+    }
+
     return (
         <div className='cartItemWrapper'>
         <Paper sx={{mb:3}}>
@@ -21,16 +32,16 @@ export const CartItem = (props) => {
                 {props.item.description}
             </Grid>
             <Grid item xs={1} style={{marginTop:'4rem'}}>
-               1 шт
+                {props.item.size[0]} 
             </Grid>
             <Grid item xs={1} style={{marginTop:'4rem'}}>
-                {props.item.price} $
+                1 шт.
             </Grid>
             <Grid item xs={1} style={{marginTop:'4rem'}}>
                 {props.item.price} $
             </Grid>
             <Grid item xs={1} style={{marginTop:'3.5rem'}}>
-                <Button><DeleteIcon sx={{color:'black'}}/></Button>
+                <Button onClick={()=> deleteFromCartHandler(props.item.id)}><DeleteIcon sx={{color:'black'}}/></Button>
             </Grid>
         </Grid>
         </Paper>
