@@ -2,10 +2,22 @@
 
 .itemsList-heading {
     color: $primaryColor;
+    margin-bottom:2rem;
 } 
 
 .itemsList-container {
     display: flex; 
     justify-content: space-between;
     flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.itemList-filters {
+    display: flex;
+    align-self: center;
+}
+
+.filter-mr {
+    margin-right: 4rem;
+    margin-bottom: 2rem;
 }

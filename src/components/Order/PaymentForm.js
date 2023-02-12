@@ -1,22 +1,18 @@
-import * as React from 'react';
-import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
+import {Typography, Grid, TextField, FormControlLabel, Checkbox} from '@mui/material';
 
 export default function PaymentForm() {
   return (
-    <React.Fragment>
+    <>
       <Typography variant="h6" gutterBottom>
-        Payment method
+        Метод оплаты
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
           <TextField
             required
             id="cardName"
-            label="Name on card"
+            label="Держатель карты"
+            helperText="Латиницей, как указано на карте"
             fullWidth
             autoComplete="cc-name"
             variant="standard"
@@ -26,7 +22,7 @@ export default function PaymentForm() {
           <TextField
             required
             id="cardNumber"
-            label="Card number"
+            label="Номер карты"
             fullWidth
             autoComplete="cc-number"
             variant="standard"
@@ -36,7 +32,7 @@ export default function PaymentForm() {
           <TextField
             required
             id="expDate"
-            label="Expiry date"
+            label="Срок действия"
             fullWidth
             autoComplete="cc-exp"
             variant="standard"
@@ -47,7 +43,7 @@ export default function PaymentForm() {
             required
             id="cvv"
             label="CVV"
-            helperText="Last three digits on signature strip"
+            helperText="Последние три цифры на обороте"
             fullWidth
             autoComplete="cc-csc"
             variant="standard"
@@ -56,10 +52,10 @@ export default function PaymentForm() {
         <Grid item xs={12}>
           <FormControlLabel
             control={<Checkbox color="secondary" name="saveCard" value="yes" />}
-            label="Remember credit card details for next time"
+            label="Запомнить эту карту"
           />
         </Grid>
       </Grid>
-    </React.Fragment>
+    </>
   );
 }

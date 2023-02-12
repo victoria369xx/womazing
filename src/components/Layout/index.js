@@ -9,8 +9,8 @@ import { Footer } from '../Footer/Footer';
 
 export const Layout = () => {
     return (
-        <Container maxWidth='lg' sx={{mt:3}}> 
-            <div>
+        <Container maxWidth='lg' sx={{mt:3, display:'flex', flexDirection:'column', minHeight:'100vh'}}> 
+            <div className='wrapper' style={{flexGrow:1}}>
             <header className='header'>
                 <Link to='/' className='header-link__logo'> <h1>WOMAZING</h1> </Link>
                 <span className='header-right-flex'>

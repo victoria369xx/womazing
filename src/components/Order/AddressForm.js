@@ -1,15 +1,11 @@
-import * as React from 'react';
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
+
+import {Grid, Typography, TextField, FormControlLabel, Checkbox} from '@mui/material';
 
 export default function AddressForm() {
   return (
-    <React.Fragment>
+    <>
       <Typography variant="h6" gutterBottom>
-        Shipping address
+        Адрес доставки
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
@@ -17,7 +13,7 @@ export default function AddressForm() {
             required
             id="firstName"
             name="firstName"
-            label="First name"
+            label="Имя"
             fullWidth
             autoComplete="given-name"
             variant="standard"
@@ -28,7 +24,7 @@ export default function AddressForm() {
             required
             id="lastName"
             name="lastName"
-            label="Last name"
+            label="Фамилия"
             fullWidth
             autoComplete="family-name"
             variant="standard"
@@ -37,21 +33,21 @@ export default function AddressForm() {
         <Grid item xs={12}>
           <TextField
             required
-            id="address1"
-            name="address1"
-            label="Address line 1"
+            id="email"
+            name="email"
+            label="Эл. почта"
             fullWidth
-            autoComplete="shipping address-line1"
             variant="standard"
           />
         </Grid>
         <Grid item xs={12}>
           <TextField
-            id="address2"
-            name="address2"
-            label="Address line 2"
+            required
+            id="address1"
+            name="address1"
+            label="Адрес доставки"
             fullWidth
-            autoComplete="shipping address-line2"
+            autoComplete="shipping address-line1"
             variant="standard"
           />
         </Grid>
@@ -60,29 +56,9 @@ export default function AddressForm() {
             required
             id="city"
             name="city"
-            label="City"
+            label="Город"
             fullWidth
             autoComplete="shipping address-level2"
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            id="state"
-            name="state"
-            label="State/Province/Region"
-            fullWidth
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="zip"
-            name="zip"
-            label="Zip / Postal code"
-            fullWidth
-            autoComplete="shipping postal-code"
             variant="standard"
           />
         </Grid>
@@ -91,19 +67,30 @@ export default function AddressForm() {
             required
             id="country"
             name="country"
-            label="Country"
+            label="Страна"
             fullWidth
             autoComplete="shipping country"
+            variant="standard"
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="zip"
+            name="zip"
+            label="Индекс"
+            fullWidth
+            autoComplete="shipping postal-code"
             variant="standard"
           />
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
             control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
-            label="Use this address for payment details"
+            label="Использовать этот адрес для других покупок"
           />
         </Grid>
       </Grid>
-    </React.Fragment>
+    </>
   );
 }

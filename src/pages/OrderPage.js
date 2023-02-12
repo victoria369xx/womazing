@@ -1,4 +1,4 @@
-import {Checkout} from '../components/mui_order/Checkout';
+import {Checkout} from '../components/Order/Checkout';
 export const OrderPage = () => {
     return (
         <>
