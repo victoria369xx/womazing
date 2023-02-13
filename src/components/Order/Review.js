@@ -1,56 +1,33 @@
 import * as React from 'react';
 import {Typography, List, ListItem, ListItemText, Grid} from '@mui/material';
-
-const products = [
-  {
-    name: 'Product 1',
-    desc: 'A nice thing',
-    price: '$9.99',
-  },
-  {
-    name: 'Product 2',
-    desc: 'Another thing',
-    price: '$3.45',
-  },
-  {
-    name: 'Product 3',
-    desc: 'Something else',
-    price: '$6.51',
-  },
-  {
-    name: 'Product 4',
-    desc: 'Best thing of all',
-    price: '$14.11',
-  },
-  { name: 'Shipping', desc: '', price: 'Free' },
-];
+import { useSelector } from 'react-redux';
+import {getCartList} from '../../store/cartItems/selectors';
 
 const addresses = ['1 MUI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
-const payments = [
-  { name: 'Card type', detail: 'Visa' },
-  { name: 'Card holder', detail: 'Mr John Smith' },
-  { name: 'Card number', detail: 'xxxx-xxxx-xxxx-1234' },
-  { name: 'Expiry date', detail: '04/2024' },
-];
+
 
 export default function Review() {
+
+  const cartItems = useSelector(getCartList)
+  const totalPrice = cartItems.reduce((acc, currVal) => acc + currVal.price, 0)
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
         Детали заказа
       </Typography>
       <List disablePadding>
-        {products.map((product) => (
-          <ListItem key={product.name} sx={{ py: 1, px: 0 }}>
-            <ListItemText primary={product.name} secondary={product.desc} />
-            <Typography variant="body2">{product.price}</Typography>
+        {cartItems.map((item) => (
+          <ListItem key={item.id} sx={{ py: 1, px: 0 }}>
+            <ListItemText primary={item.name} secondary={item.description} />
+            <Typography variant="body2">{item.price}$</Typography>
           </ListItem>
         ))}
 
         <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-            $34.06
+            {totalPrice}$
           </Typography>
         </ListItem>
       </List>
@@ -66,18 +43,7 @@ export default function Review() {
           <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
             Метод оплаты
           </Typography>
-          <Grid container>
-            {payments.map((payment) => (
-              <React.Fragment key={payment.name}>
-                <Grid item xs={6}>
-                  <Typography gutterBottom>{payment.name}</Typography>
-                </Grid>
-                <Grid item xs={6}>
-                  <Typography gutterBottom>{payment.detail}</Typography>
-                </Grid>
-              </React.Fragment>
-            ))}
-          </Grid>
+          <Typography gutterBottom>Банковская карта</Typography>
         </Grid>
       </Grid>
     </React.Fragment>
