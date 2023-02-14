@@ -1,7 +1,26 @@
 
-import {Grid, Typography, TextField, FormControlLabel, Checkbox} from '@mui/material';
+import {useState } from 'react';
+import { useDispatch } from 'react-redux';
+import {Grid, Typography, TextField, Button} from '@mui/material';
+import { setInfo } from '../../store/orders/actions';
 
 export default function AddressForm() {
+  const [userName, setUserName] = useState('')
+  const [userLastName, setUserLastName] = useState('')
+  const [userAddress, setUserAddress] = useState('')
+  const [userEmail, setUserEmail] = useState('')
+
+  const dispatch = useDispatch()
+
+  const submitHandler = () => {
+    dispatch(setInfo({
+      name:userName,
+      lastName: userLastName,
+      email: userEmail,
+      address: userAddress
+    }))
+  }
+   
   return (
     <>
       <Typography variant="h6" gutterBottom>
@@ -17,6 +36,7 @@ export default function AddressForm() {
             fullWidth
             autoComplete="given-name"
             variant="standard"
+            onChange={(event)=>setUserName(event.target.value)}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -28,6 +48,7 @@ export default function AddressForm() {
             fullWidth
             autoComplete="family-name"
             variant="standard"
+            onChange={(event)=>setUserLastName(event.target.value)}
           />
         </Grid>
         <Grid item xs={12}>
@@ -36,8 +57,10 @@ export default function AddressForm() {
             id="email"
             name="email"
             label="Эл. почта"
+            type='email'
             fullWidth
             variant="standard"
+            onChange={(event)=>setUserEmail(event.target.value)}
           />
         </Grid>
         <Grid item xs={12}>
@@ -48,15 +71,13 @@ export default function AddressForm() {
             label="Адрес доставки"
             fullWidth
             autoComplete="shipping address-line1"
-            variant="standard"
+            variant="standard" 
+            onChange={(event)=>setUserAddress(event.target.value)}
           />
         </Grid>
 
         <Grid item xs={12}>
-          <FormControlLabel
-            control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
-            label="Использовать этот адрес для других покупок"
-          />
+          <Button variant='contained' onClick={submitHandler}>Подтвердить данные</Button>
         </Grid>
       </Grid>
     </>

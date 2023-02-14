@@ -2,13 +2,13 @@ import * as React from 'react';
 import {Typography, List, ListItem, ListItemText, Grid} from '@mui/material';
 import { useSelector } from 'react-redux';
 import {getCartList} from '../../store/cartItems/selectors';
-
-const addresses = ['1 MUI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
+import {getUserInfo} from '../../store/orders/selectors';
 
 
 export default function Review() {
 
   const cartItems = useSelector(getCartList)
+  const userInfo = useSelector(getUserInfo)
   const totalPrice = cartItems.reduce((acc, currVal) => acc + currVal.price, 0)
 
   return (
@@ -36,8 +36,8 @@ export default function Review() {
           <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
             Доставка
           </Typography>
-          <Typography gutterBottom>John Smith</Typography>
-          <Typography gutterBottom>{addresses.join(', ')}</Typography>
+          <Typography gutterBottom>{userInfo.name}{userInfo.lastName}</Typography>
+          <Typography gutterBottom>{userInfo.address}</Typography>
         </Grid>
         <Grid item container direction="column" xs={12} sm={6}>
           <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>

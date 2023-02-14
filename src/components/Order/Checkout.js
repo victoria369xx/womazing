@@ -1,4 +1,6 @@
 import {useState} from 'react';
+import { useSelector } from 'react-redux';
+import { getUserInfo } from '../../store/orders/selectors';
 import {CssBaseline, Box, Container, Paper, Stepper, Step, StepLabel, Button, Typography} from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AddressForm from './AddressForm';
@@ -24,6 +26,7 @@ function getStepContent(step) {
 const theme = createTheme();
 
 export  function Checkout() {
+  const userInfo = useSelector(getUserInfo)
   const [activeStep, setActiveStep] = useState(0);
 
   const handleNext = () => {
@@ -53,7 +56,7 @@ export  function Checkout() {
                   Ваш заказ оформлен. 
                 </Typography>
                 <Typography variant="subtitle1">
-                  Номер заказа #2001539. Подтверждение заказа и чек отправлены на ваш электронный адрес.
+                  Номер заказа <b>#2001539</b>. Подтверждение заказа и чек отправлены на электронный адрес <b>{userInfo.email}</b>.
                 </Typography>
               </>
             ) : (
