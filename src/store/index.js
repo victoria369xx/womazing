@@ -8,4 +8,4 @@ export const store = createStore(combineReducers({
     itemsList: itemsListReducer,
     cartItems:cartItemsReducer,
     order:orderReducer
-}), window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__());
+}));
